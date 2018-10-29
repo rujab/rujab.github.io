@@ -1,0 +1,30 @@
+---
+title: ""
+author: ""
+date: ""
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# A map of Rila Mountain created with leaflet
+October 29, 2018
+
+```{r echo = FALSE, include = FALSE}
+library(dplyr)
+library(leaflet)
+# creating a data frame
+peaks <- data.frame(name = c("Musala 2925 m", "Malka Musala 2902 m", "Irechek 2852 m", "Deno 2790 m", "Studenia chal 2785 m", "Maliovitsa 2729 m", "Aleko 2713 m", "Popova kapa 2704 m", "Lopushki 2698 m"),
+                    latitude = c(42.179230, 42.180173, 42.183952, 42.196704, 42.187706, 42.173852, 42.190500, 42.178167, 42.185417),
+                    longitude = c(23.585210, 23.591472, 23.591805, 23.603074, 23.604649, 23.363056, 23.579667, 23.407139, 23.433806))
+```
+``` {r echo = FALSE, message = FALSE}
+# creating a map
+peaks %>%
+        leaflet() %>%
+        addTiles() %>%
+        addMarkers(popup = peaks$name)
+```
+
